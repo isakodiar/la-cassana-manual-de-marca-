@@ -1,0 +1,4 @@
+# La Cassana — sitio estático, sin comando de compilación.
+# El index.html y sus recursos están en esta carpeta del repositorio.
+[build]
+  publish = "la-cassana-brandbook-web"
