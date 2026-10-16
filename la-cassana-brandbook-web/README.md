@@ -50,3 +50,18 @@ Después abre `http://localhost:8000`.
 ## Tecnología
 
 HTML semántico + CSS + JavaScript nativo, sin frameworks. Animaciones `IntersectionObserver`, selección de variantes, previsualización de fondos, navegación con indicador activo, barra de progreso y descarga del PDF. Respeta `prefers-reduced-motion`.
+
+
+## Normas técnicas interactivas (versión 02)
+
+Se añadieron tres subsecciones en **Logotipo → Normas**:
+- **Área de restricción:** lámina 12, con las tres retículas originales y opción de ampliar.
+- **Matriz geométrica:** lámina 13, selector entre el trazado y el símbolo con sus guías.
+- **Tamaños recomendados:** lámina 15, selector 12 / 8 / 5 / 3 cm y tabla de consulta.
+
+En **Tipografía**, el muestrario ahora utiliza fragmentos gráficos exactos de la página 16 del PDF de marca. No se distribuyen archivos de Thanatos ni de Candara y no hay editor de fuentes simulado.
+
+**Dependencia de visualización:** `manual-standards.js` importa dinámicamente PDF.js (versión fija 4.10.38 desde jsDelivr) cuando el usuario llega a las láminas. La ilustración procede del archivo PDF alojado en este proyecto; no existe una reconstrucción aproximada de retículas o matrices. Para fallos de conexión o bloqueo del CDN, cada figura incluye enlaces al PDF original. El resto de la página sigue funcionando sin PDF.js.
+
+**Conservación de fidelidad:** las previsualizaciones de escala no representan centímetros físicos en la pantalla. Las medidas solo tienen sentido en aplicaciones físicas validadas sobre la reproducción real.
+
