@@ -71,3 +71,6 @@
 .manual-zoom footer{padding:12px 22px;font-size:11px}
 @media(max-width:760px){.brand-standards{padding-top:65px}.brand-standards-kicker{padding-bottom:38px}.brand-standards-title{font-size:clamp(50px,11vw,84px)}.technical-block{padding:55px 0 35px;scroll-margin-top:125px}.technical-intro{grid-template-columns:1fr;gap:15px}.technical-notes,.type-official-grid,.type-explanation{grid-template-columns:1fr}.size-picker{grid-template-columns:1fr 1fr}.size-current{flex-direction:column;align-items:flex-start}.technical-figure-head,.figure-bar{padding:11px 13px}.technical-canvas-shell{min-height:150px}.type-official-top{display:block}}
 @media(prefers-reduced-motion:reduce){.standards-menu a,.matrix-switcher button,.size-picker button{transition:none}}
+
+/* After drawing, honor the PDF crop's actual aspect ratio; never stretch the logo or type. */
+.technical-canvas-shell.loaded canvas{aspect-ratio:auto}
