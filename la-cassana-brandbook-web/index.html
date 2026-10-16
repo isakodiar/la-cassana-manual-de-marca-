@@ -9,7 +9,9 @@
   <link rel="icon" href="assets/logo-symbol-white.png" />
   <link rel="preload" href="assets/hero-product.webp" as="image" />
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="manual-standards.css" />
   <script src="script.js" defer></script>
+  <script src="manual-standards.js" defer></script>
 </head>
 <body>
   <div class="progress-track" aria-hidden="true"><div id="reading-progress"></div></div>
@@ -20,7 +22,7 @@
     </a>
     <nav class="desktop-nav" aria-label="Navegación del manual">
       <a href="#esencia">ESENCIA</a>
-      <a href="#identidad">LOGOTIPO</a>
+      <a href="#identidad">LOGOTIPO</a><a href="#normas">NORMAS</a>
       <a href="#tipografia">TIPOGRAFÍA</a>
       <a href="#colores">COLOR</a>
       <a href="#sistema">SISTEMA</a>
@@ -29,7 +31,7 @@
     <a href="manual-la-cassana.pdf" class="header-download" download="Manual-de-marca-La-Cassana.pdf">PDF <span aria-hidden="true">↗</span></a>
   </header>
   <nav class="mobile-nav" aria-label="Navegación móvil">
-    <a href="#esencia">ESENCIA</a><a href="#identidad">LOGOTIPO</a><a href="#tipografia">TIPOGRAFÍA</a><a href="#colores">COLOR</a><a href="#sistema">SISTEMA</a><a href="#aplicaciones">APLICACIONES</a>
+    <a href="#esencia">ESENCIA</a><a href="#identidad">LOGOTIPO</a><a href="#normas">NORMAS</a><a href="#tipografia">TIPOGRAFÍA</a><a href="#colores">COLOR</a><a href="#sistema">SISTEMA</a><a href="#aplicaciones">APLICACIONES</a>
   </nav>
 
   <main>
@@ -78,16 +80,64 @@
         <div class="logo-footer"><div class="appearance-controls" role="group" aria-label="Seleccionar fondo"><button type="button" class="appearance is-selected" data-appearance="dark" aria-label="Fondo oscuro" aria-pressed="true"></button><button type="button" class="appearance" data-appearance="orange" aria-label="Fondo terracota" aria-pressed="false"></button><button type="button" class="appearance" data-appearance="light" aria-label="Fondo claro" aria-pressed="false"></button><span>PROBAR FONDOS</span></div><a href="assets/logo-symbol-white.png" id="logo-download" download="la-cassana-isotipo-blanco.png">DESCARGAR PNG <span>↗</span></a></div>
       </div>
       <div class="identity-details reveal"><div><span class="item-count">01</span><h3>Reconocible.</h3><p>La forma del símbolo conserva su personalidad incluso sin acompañarse del nombre.</p></div><div><span class="item-count">02</span><h3>Adaptable.</h3><p>Las variantes compositivas se utilizan según el soporte y la escala.</p></div><div><span class="item-count">03</span><h3>Consistente.</h3><p>Evitar deformaciones, cambios arbitrarios de proporción y contrastes insuficientes.</p></div></div>
+
+      <section class="brand-standards" id="normas" aria-labelledby="standards-title">
+        <div class="brand-standards-head">
+          <div class="brand-standards-kicker"><span>02A / NORMATIVA DE IDENTIDAD</span><span>CONSULTA PARA DISEÑADORES</span></div>
+          <h3 class="brand-standards-title" id="standards-title">UNA IDENTIDAD.<br>REGLAS CLARAS<span style="color:var(--orange)">.</span></h3>
+          <p>El carácter de La Cassana también se construye con precisión: espacios de protección, trazos consistentes y escalas apropiadas para cada aplicación.</p>
+          <nav class="standards-menu" aria-label="Apartados técnicos de identidad">
+            <a href="#restriccion"><span>01</span> ÁREA DE RESTRICCIÓN ↗</a>
+            <a href="#matriz"><span>02</span> MATRIZ GEOMÉTRICA ↗</a>
+            <a href="#tamanos"><span>03</span> TAMAÑOS ↗</a>
+          </nav>
+        </div>
+        <div class="technical-block" id="restriccion">
+          <div class="technical-intro"><div><p class="technical-label">01 / PROTECCIÓN DEL SIGNO</p><h3>EL ESPACIO<br><em>TAMBIÉN CUENTA.</em></h3></div><p>El área de restricción protege la lectura de la identidad frente a textos, imágenes, bordes y otros recursos gráficos. Las tres composiciones deben conservar su propio espacio de seguridad.</p></div>
+          <figure class="technical-figure is-light">
+            <div class="technical-figure-head"><span>ÁREAS DE RESTRICCIÓN / 03 COMPOSICIONES</span><span>LÁMINA 12</span></div>
+            <div class="technical-canvas-shell"><canvas data-manual-page="12" data-crop="full" role="img" aria-label="Tres versiones del logotipo con sus retículas originales y áreas de protección"></canvas><div class="pdf-loading" role="status">Cargando lámina oficial…</div></div>
+            <figcaption class="figure-bar"><span>DIAGRAMA ORIGINAL · CONSERVAR LAS ÁREAS ILUSTRADAS</span><button class="figure-action" type="button" data-manual-zoom="12" data-zoom-title="Áreas de restricción · Lámina 12">AMPLIAR ↗</button></figcaption>
+          </figure>
+          <div class="technical-notes"><p><strong>Regla de uso.</strong> Mantener libre de elementos ajenos la franja de protección indicada en la retícula, sin cambiar las proporciones ni la disposición de los componentes.</p><p class="note-muted">El manual muestra las retículas, pero no establece una fórmula universal de separación. No transformar los módulos en una medida oficial sin comprobar el archivo maestro. <a href="manual-la-cassana.pdf#page=12" target="_blank" rel="noopener" style="text-decoration:underline">Ver PDF ↗</a></p></div>
+        </div>
+        <div class="technical-block" id="matriz">
+          <div class="technical-intro"><div><p class="technical-label">02 / CONSTRUCCIÓN DEL ISOTIPO</p><h3>DE LA FORMA<br><em>AL SISTEMA.</em></h3></div><p>Su estructura combina trazos tipográficos con un gesto orgánico en la parte superior de la «C». La matriz documenta cómo se relacionan curvas, centros y proporciones sin reinterpretar el símbolo.</p></div>
+          <div class="matrix-switcher" role="group" aria-label="Vista de la construcción geométrica"><button type="button" data-matrix-view="guides" aria-pressed="true">01 / TRAZADO GEOMÉTRICO</button><button type="button" data-matrix-view="result" aria-pressed="false">02 / ISOTIPO Y CONSTRUCCIÓN</button></div>
+          <div class="matrix-pane" data-matrix-pane="guides">
+            <figure class="technical-figure"><div class="technical-figure-head"><span>RELACIONES GEOMÉTRICAS</span><span>LÁMINA 13</span></div><div class="technical-canvas-shell"><canvas data-manual-page="13" data-crop="matrix-left" role="img" aria-label="Guías geométricas, curvas y círculos del isotipo oficial"></canvas><div class="pdf-loading" role="status">Cargando trazado oficial…</div></div><figcaption class="figure-bar"><span>VISTA DETALLADA DE LA MATRIZ</span><button class="figure-action" type="button" data-manual-zoom="13" data-zoom-crop="matrix-left" data-zoom-title="Matriz geométrica · Trazado">AMPLIAR ↗</button></figcaption></figure>
+          </div>
+          <div class="matrix-pane" data-matrix-pane="result" hidden>
+            <figure class="technical-figure"><div class="technical-figure-head"><span>CONSTRUCCIÓN SUPERPUESTA AL ISOTIPO</span><span>LÁMINA 13</span></div><div class="technical-canvas-shell"><canvas data-manual-page="13" data-crop="matrix-right" role="img" aria-label="Isotipo original blanco con guías de construcción geométrica"></canvas><div class="pdf-loading" role="status">Cargando símbolo oficial…</div></div><figcaption class="figure-bar"><span>VISTA DETALLADA DE LA COMPOSICIÓN</span><button class="figure-action" type="button" data-manual-zoom="13" data-zoom-crop="matrix-right" data-zoom-title="Matriz geométrica · Símbolo">AMPLIAR ↗</button></figcaption></figure>
+          </div>
+          <div class="technical-notes"><p><strong>Regla de uso.</strong> La matriz documenta la lógica formal de la marca; no es una plantilla para redibujarla. Utilizar únicamente archivos maestros autorizados.</p><p class="note-muted">Las líneas proceden de la lámina original y no de una geometría aproximada. <a href="manual-la-cassana.pdf#page=13" target="_blank" rel="noopener" style="text-decoration:underline">Consultar página 13 ↗</a></p></div>
+        </div>
+        <div class="technical-block" id="tamanos">
+          <div class="technical-intro"><div><p class="technical-label">03 / ESCALAS DE REPRODUCCIÓN</p><h3>LA IDENTIDAD<br><em>A CUALQUIER ESCALA.</em></h3></div><p>Las cuatro referencias permiten elegir una variante adecuada al formato. Selecciona una medida para ver la composición exacta de la lámina original.</p></div>
+          <div class="size-picker" role="group" aria-label="Elegir medida recomendada">
+            <button type="button" data-size-select="12" aria-pressed="true">12 cm <small>01 ↗</small></button><button type="button" data-size-select="8" aria-pressed="false">8 cm <small>02 ↗</small></button><button type="button" data-size-select="5" aria-pressed="false">5 cm <small>03 ↗</small></button><button type="button" data-size-select="3" aria-pressed="false">3 cm <small>04 ↗</small></button>
+          </div>
+          <div class="size-current" aria-live="polite"><strong id="size-reference-label">12 cm</strong><span id="size-reference-description">Logotipo denominativo</span></div>
+          <figure class="technical-figure"><div class="technical-canvas-shell"><canvas id="size-reference-canvas" data-manual-page="15" data-crop="sizes-12" role="img" aria-label="Composición original mostrada en el manual para la medida seleccionada"></canvas><div class="pdf-loading" role="status">Cargando escalas oficiales…</div></div><figcaption class="figure-bar"><span>REFERENCIAS EN CM PARA IMPRESIÓN · NO A ESCALA REAL DE PANTALLA</span><button class="figure-action" type="button" data-manual-zoom="15" data-zoom-title="Escalas recomendadas · Lámina 15">VER LÁMINA ↗</button></figcaption></figure>
+          <table class="size-reference"><thead><tr><th>Medida indicada</th><th>Composición</th></tr></thead><tbody><tr><td>12 cm</td><td>Logotipo denominativo</td></tr><tr><td>8 cm</td><td>Composición con nombre en arco</td></tr><tr><td>5 cm</td><td>Composición con nombre en arco reducida</td></tr><tr><td>3 cm</td><td>Isotipo independiente</td></tr></tbody></table>
+          <div class="technical-notes"><p><strong>Aplicación.</strong> Priorizar legibilidad y comprobar cada tamaño en el material y proceso de producción. Para espacios reducidos, considerar el isotipo independiente.</p><p class="note-muted">La página 15 muestra estas cuatro referencias físicas. No define equivalencias oficiales en píxeles. <a href="manual-la-cassana.pdf#page=15" target="_blank" rel="noopener" style="text-decoration:underline">Ver PDF ↗</a></p></div>
+        </div>
+      </section>
     </section>
 
     <section class="section typography" id="tipografia" aria-labelledby="type-title">
       <div class="section-head reveal"><span class="section-index">03 / 06</span><span>EL TONO VISUAL</span><span class="head-plus">✳</span></div>
       <div class="type-heading reveal"><p class="eyebrow orange">03. SISTEMA TIPOGRÁFICO</p><h2 id="type-title" class="display-title">TIPOGRAFÍA<br /><span>CON VOZ PROPIA.</span></h2></div>
-      <div class="type-specimens">
-        <div class="type-main reveal"><div class="type-label"><strong>01</strong><div><b>THANATOSVF</b><span>TIPOGRAFÍA PRINCIPAL / SERIF</span></div></div><div class="type-glyph" contenteditable="true" role="textbox" aria-label="Prueba el estilo de la tipografía principal" spellcheck="false" data-placeholder="Aa">Aa<span class="type-dot">.</span></div><p>Contrastes marcados, personalidad y una apariencia que combina lo clásico con lo inesperado. <span class="type-hint">HAZ CLIC SOBRE LAS LETRAS PARA EDITARLAS.</span></p></div>
-        <div class="type-secondary reveal"><div class="type-label"><strong>02</strong><div><b>CANDARA</b><span>TIPOGRAFÍA SECUNDARIA / SANS SERIF</span></div></div><div class="type-glyph secondary-glyph" contenteditable="true" role="textbox" aria-label="Prueba el estilo de la tipografía secundaria" spellcheck="false" data-placeholder="Ag">Ag<span class="type-dot">.</span></div><p>Humanista, abierta y legible. Pensada para subtítulos, información práctica y textos corridos.</p></div>
+
+      <div class="type-official reveal" id="muestrario-oficial">
+        <div class="type-official-top"><div><p class="eyebrow orange">MUESTRARIO OFICIAL / PDF PÁG. 16</p><h3>EL CARÁCTER<br>SE ESCRIBE.</h3></div><p>Estas muestras reproducen directamente los trazos presentes en el PDF original, sin cargar ni redistribuir los archivos de las fuentes.</p></div>
+        <div class="type-official-grid">
+          <figure class="technical-figure"><div class="technical-figure-head"><span>01 / THANATOSVF</span><span>PRINCIPAL · SERIF</span></div><div class="technical-canvas-shell"><canvas data-manual-page="16" data-crop="type-primary" role="img" aria-label="Muestra oficial del nombre y el alfabeto de ThanatosVF según La Cassana"></canvas><div class="pdf-loading" role="status">Cargando muestra de Thanatos…</div></div><figcaption class="figure-bar"><span>TITULARES / MENSAJES DESTACADOS</span><button class="figure-action" type="button" data-manual-zoom="16" data-zoom-crop="type-primary" data-zoom-title="ThanatosVF · Muestra oficial">AMPLIAR ↗</button></figcaption></figure>
+          <figure class="technical-figure"><div class="technical-figure-head"><span>02 / CANDARA</span><span>SECUNDARIA · HUMANISTA</span></div><div class="technical-canvas-shell"><canvas data-manual-page="16" data-crop="type-secondary" role="img" aria-label="Muestra oficial del nombre y el alfabeto de Candara según La Cassana"></canvas><div class="pdf-loading" role="status">Cargando muestra de Candara…</div></div><figcaption class="figure-bar"><span>SUBTÍTULOS / TEXTOS INFORMATIVOS</span><button class="figure-action" type="button" data-manual-zoom="16" data-zoom-crop="type-secondary" data-zoom-title="Candara · Muestra oficial">AMPLIAR ↗</button></figcaption></figure>
+        </div>
+        <div class="type-explanation"><div><h4>01 / Thanatos Variable</h4><p>Tipografía principal con contraste gradual y remates pronunciados, vinculados al carácter orgánico de la marca. Recomendada para titulares y mensajes de alto impacto.</p></div><div><h4>02 / Candara</h4><p>Tipografía secundaria humanista, de formas abiertas y lectura fluida, para subtítulos, descripciones y textos corridos.</p></div></div>
+        <div class="type-license"><p><strong>Uso tipográfico y licencia.</strong> Las muestras son representaciones gráficas procedentes del manual oficial. No se distribuyen archivos de fuentes ni se habilita edición dinámica con una copia no autorizada.</p><p>Para utilizar las familias en nuevos materiales, cada colaborador debe verificar sus licencias correspondientes. <a href="manual-la-cassana.pdf#page=16" target="_blank" rel="noopener" style="text-decoration:underline">Consultar lámina tipográfica ↗</a></p></div>
       </div>
-      <div class="type-sample-footer reveal"><span>ABCDEFGHIJKLMNÑOPQRSTUVWXYZ</span><span>abcdefghijklmnñopqrstuvwxyz</span><span>0123456789 !?&%$</span></div>
     </section>
 
     <section class="section colors dark-section" id="colores" aria-labelledby="colors-title">
@@ -125,6 +175,7 @@
     <section class="outro" aria-labelledby="outro-title"><div class="outro-top"><span>LA CASSANA / FIN DEL RECORRIDO</span><span>MANUAL DE IDENTIDAD · 2026</span></div><div class="outro-main reveal"><p class="eyebrow">¿LISTO PARA USAR LA IDENTIDAD?</p><h2 id="outro-title">QUE TODO<br /><em>TENGA CARÁCTER.</em></h2><div class="outro-actions"><a class="button-primary" href="manual-la-cassana.pdf" download="Manual-de-marca-La-Cassana.pdf">DESCARGAR MANUAL COMPLETO <span>↗</span></a><a class="text-link dark-link" href="#inicio">VOLVER AL INICIO ↑</a></div></div><div class="outro-symbol" aria-hidden="true"><img src="assets/logo-symbol-black.png" alt="" /></div></section>
   </main>
   <footer><div class="footer-brand"><img src="assets/logo-symbol-white.png" alt="" /><span>LA CASSANA ®</span></div><p>SALSAS CASERAS / AGUASCALIENTES, MÉXICO</p><p>MANUAL DE IDENTIDAD VISUAL · 2026</p></footer>
+  <dialog class="manual-zoom" id="manual-zoom-dialog" aria-label="Vista ampliada de lámina técnica"><div class="manual-zoom-heading"><span data-dialog-title>Lámina oficial · La Cassana</span><button type="button" class="manual-zoom-close" aria-label="Cerrar vista ampliada">CERRAR ×</button></div><canvas role="img" aria-label="Lámina técnica ampliada del manual original"></canvas><footer><span>LA CASSANA / BRAND BOOK</span><span>ESC PARA CERRAR</span></footer></dialog>
   <div class="toast" role="status" aria-live="polite" id="toast">COLOR COPIADO</div>
 </body>
 </html>
