@@ -12,7 +12,7 @@
     'matrix-left': [.105,.205,.365,.59], 'matrix-right': [.522,.205,.365,.59],
     'sizes-12': [.545,.11,.43,.205], 'sizes-8': [.545,.31,.43,.225],
     'sizes-5': [.545,.515,.43,.21], 'sizes-3': [.545,.715,.43,.215],
-    'type-primary': [.345,.22,.314,.37], 'type-secondary': [.657,.22,.305,.37]
+    'type-primary': [.345,.22,.314,.37], 'type-secondary': [.624,.22,.352,.37]
   };
   const clamp = (n,min,max) => Math.min(max,Math.max(min,n));
   function loadPDF(){
