@@ -157,3 +157,19 @@
 @media(max-width:1020px){.geometry-gallery{grid-template-columns:repeat(2,minmax(0,1fr))}.logo-toolbar{align-items:flex-start}.logo-control-stack{align-items:flex-start}.logo-control-stack .logo-options,.logo-control-stack .appearance-controls{justify-content:flex-start}}
 @media(max-width:680px){.brand-link .brand-wordmark{width:130px}.logo-toolbar{padding:18px;flex-direction:column}.logo-control-stack{align-items:flex-start;width:100%}.logo-control-stack .logo-options{width:100%}.logo-control-stack .logo-option{padding:10px}.logo-footer{padding:15px;align-items:flex-start;flex-wrap:wrap}.geometry-gallery{grid-template-columns:1fr}.geometry-preview img{height:280px}.size-asset-toolbar{padding:12px}.size-variants button{flex:1}.size-logo-stage{min-height:295px;padding:24px}.size-logo-stage img{max-width:94%}.size-logo-stage[data-size="3"] img{max-width:58%}.swatch-extra{font-size:10px}}
 @media(prefers-reduced-motion:reduce){.size-logo-stage,.size-logo-stage img,.swatch-extra,.swatch-bottom{transition:none}}
+
+
+/* Wordmark del header: crossfade blanco → crema (sin cambios de geometría). */
+.brand-wordmark-stack{display:block;position:relative;width:178px;height:56px;flex:0 0 178px}
+.brand-link .brand-wordmark-stack .brand-wordmark{
+  position:absolute;inset:0;display:block;width:100%;height:100%;max-height:none;
+  object-fit:contain;object-position:left center;transition:opacity 250ms ease;
+}
+.brand-link .brand-wordmark-stack .brand-wordmark--default{opacity:1}
+.brand-link .brand-wordmark-stack .brand-wordmark--hover{opacity:0}
+.brand-link:is(:hover,:focus-visible) .brand-wordmark--default{opacity:0}
+.brand-link:is(:hover,:focus-visible) .brand-wordmark--hover{opacity:1}
+@media(max-width:760px){.brand-wordmark-stack{width:130px;height:50px;flex-basis:130px}}
+@media(prefers-reduced-motion:reduce){
+  .brand-link .brand-wordmark-stack .brand-wordmark{transition:none}
+}
