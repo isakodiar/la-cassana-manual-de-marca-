@@ -1,139 +1,95 @@
-/* Original PDF illustrations: no font files are copied or redistributed. */
+/* La Cassana — normas técnicas con PNGs independientes y visor de escalas.
+ * No se importan tipografías ni se hacen capturas del PDF. */
 (() => {
   'use strict';
-  const sources = document.querySelectorAll('canvas[data-manual-page]');
-  if (!sources.length) return;
-  const PDF_URL = 'manual-la-cassana.pdf';
-  const PDFJS = 'https://cdn.jsdelivr.net/npm/pdfjs-dist@4.10.38/build/pdf.min.mjs';
-  let docPromise;
-  const pagePromises = new Map();
-  const crops = {
-    full: [0,0,1,1],
-    'matrix-left': [.105,.205,.365,.59], 'matrix-right': [.522,.205,.365,.59],
-    'sizes-12': [.545,.11,.43,.205], 'sizes-8': [.545,.31,.43,.225],
-    'sizes-5': [.545,.515,.43,.21], 'sizes-3': [.545,.715,.43,.215],
-    'type-primary': [.345,.22,.314,.37], 'type-secondary': [.624,.22,.352,.37]
-  };
-  const clamp = (n,min,max) => Math.min(max,Math.max(min,n));
-  function loadPDF(){
-    if(!docPromise) docPromise = import(PDFJS).then(pdf => {
-      pdf.GlobalWorkerOptions.workerSrc = PDFJS.replace('pdf.min.mjs','pdf.worker.min.mjs');
-      return pdf.getDocument({url:PDF_URL}).promise;
-    });
-    return docPromise;
-  }
-  async function getPage(number){
-    if(!pagePromises.has(number)) pagePromises.set(number, loadPDF().then(doc=>doc.getPage(number)));
-    return pagePromises.get(number);
-  }
-  async function render(canvas, highRes=false){
-    const requestedCrop = canvas.dataset.crop || 'full';
-    const pageNumber = Number(canvas.dataset.manualPage);
-    const crop = crops[requestedCrop] || crops.full;
-    const page = await getPage(pageNumber);
-    const width = page.view[2]-page.view[0], height=page.view[3]-page.view[1];
-    const displayWidth = highRes ? clamp(window.innerWidth-80,320,1400) : clamp(canvas.parentElement.clientWidth,200,1400);
-    const density = clamp(window.devicePixelRatio || 1,1,2);
-    const scale = clamp(displayWidth*density/(width*crop[2]),.8,2.5);
-    const viewport=page.getViewport({scale});
-    const buffer=document.createElement('canvas');
-    buffer.width=Math.ceil(viewport.width); buffer.height=Math.ceil(viewport.height);
-    await page.render({canvasContext:buffer.getContext('2d'),viewport}).promise;
-    // Ignore stale render results when the user changes the selected scale quickly.
-    if(canvas.dataset.crop!==requestedCrop || Number(canvas.dataset.manualPage)!==pageNumber) return;
-    const sx=Math.round(crop[0]*buffer.width), sy=Math.round(crop[1]*buffer.height);
-    const sw=Math.min(buffer.width-sx,Math.round(crop[2]*buffer.width));
-    const sh=Math.min(buffer.height-sy,Math.round(crop[3]*buffer.height));
-    canvas.width=sw; canvas.height=sh;
-    canvas.getContext('2d').drawImage(buffer,sx,sy,sw,sh,0,0,sw,sh);
-    canvas.parentElement?.classList.add('loaded');
-  }
-  function onRenderError(canvas){
-    const message=canvas.closest('.technical-canvas-shell')?.querySelector('.pdf-loading');
-    if(message){
-      message.classList.add('is-error');
-      message.innerHTML = 'Vista previa no disponible. <a href="'+PDF_URL+'#page='+canvas.dataset.manualPage+'" target="_blank" rel="noopener">Abrir lámina original ↗</a>';
-    }
-  }
-  const observer = 'IntersectionObserver' in window ? new IntersectionObserver(entries=>{
-    entries.forEach(entry=>{
-      if(!entry.isIntersecting) return;
-      observer.unobserve(entry.target);
-      render(entry.target).catch(()=>onRenderError(entry.target));
-    });
-  },{rootMargin:'220px'}) : null;
-  sources.forEach(canvas=>{
-    if(canvas.closest('[hidden]')) return;
-    if(observer) observer.observe(canvas);
-    else render(canvas).catch(()=>onRenderError(canvas));
-  });
-  document.querySelectorAll('[data-matrix-view]').forEach(button=>button.addEventListener('click',()=>{
-    const view=button.dataset.matrixView;
-    document.querySelectorAll('[data-matrix-view]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));
-    document.querySelectorAll('.matrix-pane').forEach(pane=>{
-      const selected=pane.dataset.matrixPane===view;
-      pane.hidden=!selected;
-      if(selected){
-        const canvas=pane.querySelector('canvas');
-        if(canvas && !canvas.width) render(canvas).catch(()=>onRenderError(canvas));
-      }
-    });
-  }));
-  const sizeCanvas=document.getElementById('size-reference-canvas');
-  const sizeName=document.getElementById('size-reference-label');
-  const sizeComposition=document.getElementById('size-reference-description');
-  const labels={
-    '12':['12 cm','Logotipo denominativo'],
-    '8':['8 cm','Composición con nombre en arco'],
-    '5':['5 cm','Composición con nombre en arco reducida'],
-    '3':['3 cm','Isotipo independiente']
-  };
-  document.querySelectorAll('[data-size-select]').forEach(btn=>btn.addEventListener('click',()=>{
-    const key=btn.dataset.sizeSelect;
-    document.querySelectorAll('[data-size-select]').forEach(b=>b.setAttribute('aria-pressed',String(b===btn)));
-    sizeName.textContent=labels[key][0];sizeComposition.textContent=labels[key][1];
-    sizeCanvas.dataset.crop='sizes-'+key;
-    sizeCanvas.parentElement.classList.remove('loaded');
-    render(sizeCanvas).catch(()=>onRenderError(sizeCanvas));
-  }));
-  const dialog=document.getElementById('manual-zoom-dialog');
-  document.querySelectorAll('[data-manual-zoom]').forEach(button=>button.addEventListener('click',async()=>{
-    const canvas=dialog.querySelector('canvas');
-    canvas.dataset.manualPage=button.dataset.manualZoom;
-    canvas.dataset.crop=button.dataset.zoomCrop || 'full';
-    dialog.querySelector('[data-dialog-title]').textContent=button.dataset.zoomTitle||'Lámina oficial de La Cassana';
-    canvas.width=0;dialog.showModal();
-    try{await render(canvas,true);}
-    catch(_){dialog.close();window.open(PDF_URL+'#page='+button.dataset.manualZoom,'_blank','noopener');}
-  }));
-  dialog.querySelector('.manual-zoom-close').addEventListener('click',()=>dialog.close());
-  dialog.addEventListener('click',event=>{if(event.target===dialog)dialog.close()});
-})();
 
-/* Dedicated lightbox for actual PNG brand assets. Independent from PDF.js. */
-(() => {
-  'use strict';
-  const dialog=document.getElementById('restriction-lightbox');
-  if(!dialog) return;
-  const fullImage=dialog.querySelector('.restriction-lightbox-image img');
-  const title=dialog.querySelector('#restriction-lightbox-title');
-  const original=dialog.querySelector('#restriction-lightbox-original');
-  const close=dialog.querySelector('.restriction-lightbox-close');
-  document.querySelectorAll('[data-restriction-view]').forEach(button=>{
-    button.addEventListener('click',()=>{
-      const thumbnail=button.querySelector('img');
-      if(!thumbnail) return;
-      const source=thumbnail.getAttribute('src');
-      const caption=button.closest('.restriction-item')?.querySelector('figcaption span')?.textContent || 'ÁREA DE RESTRICCIÓN';
-      fullImage.src=source;
-      fullImage.alt=thumbnail.alt;
-      title.textContent='LA CASSANA / '+caption;
-      original.href=source;
-      dialog.showModal();
+  // Las retículas de protección y las dos matrices geométricas comparten visor.
+  const modal = document.getElementById('restriction-lightbox');
+  if (modal) {
+    const image = modal.querySelector('.restriction-lightbox-image img');
+    const title = modal.querySelector('#restriction-lightbox-title');
+    const original = modal.querySelector('#restriction-lightbox-original');
+    const footer = modal.querySelector('.restriction-lightbox-foot span');
+    document.querySelectorAll('[data-restriction-view]').forEach(button => {
+      button.addEventListener('click', () => {
+        const thumb = button.querySelector('img');
+        if (!thumb) return;
+        const src = thumb.getAttribute('src');
+        const geometry = button.classList.contains('geometry-preview');
+        image.src = src;
+        image.alt = thumb.alt;
+        title.textContent = button.dataset.assetTitle || ('LA CASSANA / ' + (button.closest('.restriction-item')?.querySelector('figcaption span')?.textContent || 'ÁREA DE RESTRICCIÓN'));
+        original.href = src;
+        footer.textContent = geometry ? 'IDENTIDAD VISUAL / MATRIZ GEOMÉTRICA' : 'IDENTIDAD VISUAL / ÁREA DE PROTECCIÓN';
+        modal.classList.toggle('geometry-lightbox', geometry);
+        modal.showModal();
+      });
     });
+    modal.querySelector('.restriction-lightbox-close')?.addEventListener('click', () => modal.close());
+    modal.addEventListener('click', (event) => {
+      if (event.target === modal) modal.close();
+    });
+  }
+
+  // Un único juego de tres PNG se utiliza en 12 y 3 cm, como indicó el propietario.
+  // No se inventan archivos ni se representan composiciones de 8/5 cm como oficiales.
+  const sizeImages = [
+    'logo%2012%20cm%20y%203%20cm.png',
+    'logo%2012%20cm%20y%203%20cm_1.png',
+    'logo%2012%20cm%20y%203%20cm_2.png'
+  ];
+  const descriptions = {
+    '12': 'Logotipo denominativo · 3 versiones disponibles',
+    '8': 'Composición con nombre en arco · archivo pendiente',
+    '5': 'Composición reducida con nombre en arco · archivo pendiente',
+    '3': 'Isotipo independiente · 3 versiones disponibles'
+  };
+  const stage = document.getElementById('size-logo-stage');
+  const image = document.getElementById('size-logo-image');
+  const pending = document.getElementById('size-logo-pending');
+  const variants = document.getElementById('size-variants');
+  const download = document.getElementById('size-logo-download');
+  const sizeName = document.getElementById('size-reference-label');
+  const description = document.getElementById('size-reference-description');
+  const sizeButtons = [...document.querySelectorAll('[data-size-select]')];
+  const variantButtons = [...document.querySelectorAll('[data-size-variant]')];
+  if (!stage || !image || !pending || !variants || !download || !sizeName || !description) return;
+
+  let currentSize = '12';
+  let currentVariant = 0;
+  const render = () => {
+    const available = currentSize === '12' || currentSize === '3';
+    stage.dataset.size = currentSize;
+    sizeName.textContent = currentSize + ' cm';
+    description.textContent = descriptions[currentSize] || '';
+    sizeButtons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.sizeSelect === currentSize)));
+    variantButtons.forEach(button => button.setAttribute('aria-pressed', String(Number(button.dataset.sizeVariant) === currentVariant)));
+    variants.hidden = !available;
+    pending.hidden = available;
+    image.hidden = !available;
+    download.hidden = !available;
+    if (available) {
+      const file = sizeImages[currentVariant];
+      image.src = file;
+      image.alt = 'La Cassana: versión ' + (currentVariant + 1) + ' para la referencia de ' + currentSize + ' cm';
+      download.href = file;
+      download.setAttribute('download', decodeURIComponent(file));
+    }
+  };
+  sizeButtons.forEach(button => button.addEventListener('click', () => {
+    currentSize = button.dataset.sizeSelect;
+    render();
+  }));
+  variantButtons.forEach(button => button.addEventListener('click', () => {
+    currentVariant = Number(button.dataset.sizeVariant);
+    render();
+  }));
+  image.addEventListener('error', () => {
+    image.hidden = true;
+    pending.hidden = false;
+    pending.querySelector('strong').textContent = 'NO SE PUDO CARGAR ESTE ARCHIVO.';
+    pending.querySelector('span').textContent = 'Revisa el PNG en el repositorio y vuelve a intentar.';
+    download.hidden = true;
   });
-  close?.addEventListener('click',()=>dialog.close());
-  dialog.addEventListener('click',event=>{
-    if(event.target===dialog)dialog.close();
-  });
+  render();
 })();
