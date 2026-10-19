@@ -65,3 +65,13 @@ En **Tipografía**, el muestrario ahora utiliza fragmentos gráficos exactos de 
 
 **Conservación de fidelidad:** las previsualizaciones de escala no representan centímetros físicos en la pantalla. Las medidas solo tienen sentido en aplicaciones físicas validadas sobre la reproducción real.
 
+
+### Actualización: áreas de restricción con recursos independientes
+
+La sección **Normas → Área de restricción** muestra ahora los tres PNG originales añadidos a la raíz de esta carpeta (las rutas tienen espacios y una de ellas lleva tilde):
+
+- `AREA DE RESTRICCIÓN 1.png`
+- `AREA DE RESTRICCION 2.png`
+- `AREA DE RESTRICCION 3.png`
+
+Se presentan en tarjetas independientes sobre fondo neutro, con ampliación mediante un diálogo accesible. **Esta sección ya no renderiza el PDF.** La matriz geométrica, los tamaños y las muestras tipográficas siguen utilizando el PDF mientras se valida la nueva presentación de imágenes.
