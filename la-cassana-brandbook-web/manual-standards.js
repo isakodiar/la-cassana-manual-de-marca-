@@ -109,3 +109,31 @@
   dialog.querySelector('.manual-zoom-close').addEventListener('click',()=>dialog.close());
   dialog.addEventListener('click',event=>{if(event.target===dialog)dialog.close()});
 })();
+
+/* Dedicated lightbox for actual PNG brand assets. Independent from PDF.js. */
+(() => {
+  'use strict';
+  const dialog=document.getElementById('restriction-lightbox');
+  if(!dialog) return;
+  const fullImage=dialog.querySelector('.restriction-lightbox-image img');
+  const title=dialog.querySelector('#restriction-lightbox-title');
+  const original=dialog.querySelector('#restriction-lightbox-original');
+  const close=dialog.querySelector('.restriction-lightbox-close');
+  document.querySelectorAll('[data-restriction-view]').forEach(button=>{
+    button.addEventListener('click',()=>{
+      const thumbnail=button.querySelector('img');
+      if(!thumbnail) return;
+      const source=thumbnail.getAttribute('src');
+      const caption=button.closest('.restriction-item')?.querySelector('figcaption span')?.textContent || 'ÁREA DE RESTRICCIÓN';
+      fullImage.src=source;
+      fullImage.alt=thumbnail.alt;
+      title.textContent='LA CASSANA / '+caption;
+      original.href=source;
+      dialog.showModal();
+    });
+  });
+  close?.addEventListener('click',()=>dialog.close());
+  dialog.addEventListener('click',event=>{
+    if(event.target===dialog)dialog.close();
+  });
+})();
