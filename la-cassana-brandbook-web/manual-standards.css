@@ -173,3 +173,18 @@
 @media(prefers-reduced-motion:reduce){
   .brand-link .brand-wordmark-stack .brand-wordmark{transition:none}
 }
+
+/* Hero editorial: imagen de respaldo y clips seleccionables. */
+.hero-image-frame .hero-photo{position:absolute;inset:0}
+.hero-image-frame .hero-video{position:absolute;inset:0;opacity:0;pointer-events:none;animation:none;transition:opacity .38s ease;object-fit:cover;object-position:center;filter:saturate(.93)}
+.hero-image-frame .hero-video.is-playing{opacity:1}
+.hero-media-controls{position:absolute;left:24px;bottom:62px;z-index:6;display:flex;gap:6px;flex-wrap:wrap}
+.hero-media-controls button{background:#211e1ddc;color:#f6f0e8;border:1px solid #f6f0e899;font-size:10px;font-weight:900;letter-spacing:.06em;padding:10px 12px;transition:background-color .2s,color .2s,border-color .2s}
+.hero-media-controls button:is(:hover,:focus-visible),.hero-media-controls button[aria-pressed="true"]{background:var(--cream);border-color:var(--cream);color:#211e1d}
+.hero-media-controls button:focus-visible{outline:2px solid white;outline-offset:2px}
+@media(max-width:760px){.hero-media-controls{left:15px;bottom:57px}.hero-media-controls button{padding:9px 10px;font-size:9px}}
+@media(prefers-reduced-motion:reduce){.hero-image-frame .hero-video{transition:none}}
+/* Muestras gráficas oficiales, en el mismo diseño editorial de antes. */
+.type-glyph--image{display:flex;align-items:center;justify-content:flex-start;white-space:normal;min-height:240px;padding:20px 0;overflow:visible}
+.type-glyph--image img{display:block;width:100%;height:auto;max-height:245px;object-fit:contain;object-position:left center}
+@media(max-width:760px){.type-glyph--image{min-height:175px;padding:15px 0}.type-glyph--image img{max-height:185px}}
