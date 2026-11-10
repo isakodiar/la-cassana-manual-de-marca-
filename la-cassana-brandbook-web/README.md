@@ -17,7 +17,19 @@ python3 -m http.server 8000
 - Escalas 12/8/5/3 cm: 8 y 5 ofrecen tres composiciones PNG compartidas; 12 muestra el logotipo largo y 3 el isotipo, utilizando las variantes de color existentes.
 - Sistema tipográfico en disposición editorial, con espacio de muestra «Aa.» (Georgia provisional, **no** ThanatosVF)
 - Colores oficiales: HEX visible; RGB calculado a partir del HEX y Pantone del manual visibles al hover/foco; clic copia HEX
-- Aplicaciones, recursos gráficos y descarga del PDF original
+- Aplicaciones, recursos gráficos (incluidas las cuatro variantes de etiqueta y las dos caras de la tarjeta de presentación) y descarga del PDF corregido `la cassana manual de estilo.pdf`.
+
+## Etiquetas y papelería
+
+El módulo **Recursos del sistema** presenta las cuatro composiciones oficiales subidas al repositorio:
+- `labels la cassana.png` — Macha, fondo claro.
+- `labels la cassana2.png` — Macha, fondo oscuro.
+- `labels la cassana3.png` — Habanero, terracota.
+- `labels la cassana4.png` — Serrano, fondo oscuro.
+
+Cada imagen abre el PNG original en una pestaña nueva. Las tablas nutrimentales de estas composiciones son ilustrativas, tal como se indica dentro de los propios artes.
+
+En **Aplicaciones reales**, la tarjeta de presentación muestra sus dos caras: `tarjeta de presentacion.png` (frente) y `tarjeta de presentacion2.png` (vuelta).
 
 ## Recursos gráficos para tamaños
 Los tres archivos específicos de **8 y 5 cm**, confirmados en GitHub:
