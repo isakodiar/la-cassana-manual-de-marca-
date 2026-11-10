@@ -22,7 +22,7 @@ Editorial UI neutral colors (such as almost-black or off-white) are **not** addi
 
 Original manual typography: **ThanatosVF** (primary) and **Candara** (secondary). Their webfont files are not included in the first prototype. Keep clear fallbacks; do not fetch or redistribute unlicensed fonts.
 
-When present, `manual-la-cassana.pdf` is the authoritative source for claims about brand story, applications, logo usage and brand rules. Original art assets take precedence over approximate drawings. PNG logo exports in the starter are provisional; SVG replacements must be validated against the originals.
+The corrected manual, `la cassana manual de estilo.pdf`, is the authoritative source for claims about brand story, applications, logo usage and brand rules. The older `manual-la-cassana.pdf` is superseded and must not be linked from the site. Original art assets take precedence over approximate drawings. PNG logo exports in the starter are provisional; SVG replacements must be validated against the originals.
 
 ## Existing planned content
 1. Cover / introduction
