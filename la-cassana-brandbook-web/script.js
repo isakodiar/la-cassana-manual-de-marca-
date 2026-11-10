@@ -54,7 +54,7 @@
     // The combined preview is a composition, not a downloadable original asset.
     if (selectedLogo === 'combined') {
       download.textContent = 'VER MANUAL DE VARIANTES ↗';
-      download.href = 'manual-la-cassana.pdf#page=14';
+      download.href = 'la%20cassana%20manual%20de%20estilo.pdf#page=14';
       download.removeAttribute('download');
       download.target = '_blank';
       download.rel = 'noopener';
