@@ -1,6 +1,6 @@
 # Prompt para continuar este sitio en Codex
 
-Trabaja en este repositorio: es un manual de marca interactivo para **La Cassana**, una marca de salsas caseras de Aguascalientes. El sitio ya tiene un MVP funcional en HTML, CSS y JS, más imágenes optimizadas en `/assets` y el PDF original. **No reemplaces el proyecto por una plantilla ni cambies la identidad visual de la marca**.
+Trabaja en este repositorio: es un manual de marca interactivo para **La Cassana**, una marca de salsas caseras de Aguascalientes. El sitio ya tiene un MVP funcional en HTML, CSS y JS, más imágenes optimizadas en `/assets` y el PDF corregido `la cassana manual de estilo.pdf`. **No reemplaces el proyecto por una plantilla ni cambies la identidad visual de la marca**.
 
 ## Objetivo
 Perfeccionar la experiencia hasta tener una web editorial premium inspirada en diseño brutalista/suizo: retícula estructurada, titulares dramáticos, contrastes negro/crema/terracota, composición asimétrica y microanimaciones elegantes. Debe parecer un brand book digital curado por un estudio de diseño, no un ecommerce de salsa.
@@ -22,7 +22,7 @@ Manual original: ThanatosVF (principal), Candara (secundaria). Los archivos web 
 4. Muestrario de color copiando HEX, con confirmación visible.
 5. Especímenes tipográficos editables.
 6. Layout responsive (375, 768, 1440px), keyboard navigation y `prefers-reduced-motion`.
-7. PDF completo descargable.
+7. PDF corregido completo descargable.
 
 ## Restricciones
 - Contenido y nombres deben basarse en el manual PDF; no inventar historia, productos, certificaciones o recomendaciones legales.
